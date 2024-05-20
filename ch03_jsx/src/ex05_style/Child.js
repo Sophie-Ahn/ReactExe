@@ -1,21 +1,15 @@
 function Child() {
-	const name = "리액트";
-	const style = {
-		backgroundColor: 'turquoise',
-		color: 'yellow',
-		fontSize: '20px',
-		fontWeight: 'bold',
-		padding: 10
-	}
+  const name = "리액트";
 
+  const style = {
+    backgroundColor: "black", // background-color
+    color: "aqua",
+    fontSize: "48px", // font-size
+    fontWeight: "bold", // font-weight
+    padding: 16,
+  };
 
-	return (
-		<>
-			<div style={style}>
-				{name}
-			</div>
-		</>
-	);
+  return <div style={style}>{name}</div>;
 }
 
 export default Child;

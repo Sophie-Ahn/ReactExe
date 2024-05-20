@@ -1,1 +1,7 @@
-.react {background-color: turquoise; color: yellow; font-size: 20px;font-weight: bold; padding: 10px;}
+.react{
+    background: aqua;
+    color: black;
+    font-size: 48px;
+    font-weight: bold;
+    padding: 16px;
+}

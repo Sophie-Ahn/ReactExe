@@ -1,22 +1,19 @@
-import "./child.css";
+import "./Child.css";
 
 function Child() {
-	const name = "리액트";
-	// js 주석은 이렇게
-	/*
-	js 여러 줄 주석은 이렇게
-	*/
+  const name = "리액트";
 
-	return (
-		<>
-			<div className="react">
-				{/* 주석은 이렇게 작성합니다. */}
-				{name}
-				<br />
-				위에가 주석이지롱
-			</div>
-		</>
-	);
+  // js 주석은 이렇게
+  /* js 여러 줄 주석
+   */
+
+  return (
+    <>
+      {/* 주석은 이렇게 작성합니다 */}
+      <div className="react">{name}</div>
+      // 이런 주석은 보입니다. /* 이것도 보입니다. */
+    </>
+  );
 }
 
 export default Child;
