@@ -2,9 +2,9 @@ import { useState, useRef, useCallback } from 'react';
 
 import './fonts/index.css';
 
-import TodoTemplate from './ex05_TodoInsert/TodoTemplate';
-import TodoInsertBtn from './ex05_TodoInsert/TodoInsert';
-import TodoList from './ex05_TodoInsert/TodoList';
+import TodoTemplate from './ex07_TodoToggle/TodoTemplate';
+import TodoInsertBtn from './ex07_TodoToggle/TodoInsert';
+import TodoList from './ex07_TodoToggle/TodoList';
 
 function App() {
     const [todos, setTodos] = useState([
@@ -42,12 +42,27 @@ function App() {
         nextId.current += 1;
     }, [todos]);
 
+    const onRemove = useCallback((id) => {
+        setTodos(todos.filter((todo) => todo.id !== id));
+    }, [todos]);
+
+    const onToggle = useCallback(
+        (id) => {
+            setTodos(
+                todos.map((todo) =>
+                    todo.id === id ? { ...todo, checked: !todo.checked } : todo
+                )
+            );
+        },
+        [todos]
+    );
+
 
     return (
         <>
             <TodoTemplate>
                 <TodoInsertBtn onInsert={onInsert} />
-                <TodoList todos={todos} />
+                <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
             </TodoTemplate>
 
         </>
