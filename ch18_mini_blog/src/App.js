@@ -1,5 +1,11 @@
+import MiniBlogApp from "./ex03_mini_blog_app/MiniBlogApp";
+
 function App() {
-    return;
+    return (
+        <>
+            <MiniBlogApp />
+        </>
+    )
 }
 
 export default App;
