@@ -1,4 +1,4 @@
-import MainApp from './ex01_hirerachy/MainApp'
+import MainApp from './ex06_provider/MainApp'
 
 function App() {
     return <MainApp />;
