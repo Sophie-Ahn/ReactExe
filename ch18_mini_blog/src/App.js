@@ -1,4 +1,4 @@
-import MiniBlogApp from "./ex03_mini_blog_app/MiniBlogApp";
+import MiniBlogApp from "./ex07_comment_list/MiniBlogApp";
 
 function App() {
     return (
