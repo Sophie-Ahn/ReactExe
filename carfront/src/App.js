@@ -1,4 +1,4 @@
-import MainApp from './ex01_main_app/MainApp';
+import MainApp from './ex05_delete_car/MainApp';
 
 function App() {
     return (

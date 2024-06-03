@@ -1,5 +1,7 @@
-import "../App.css";
 import { AppBar, Toolbar, Typography } from "@mui/material";
+import CarList from "./components/CarList";
+
+import "../App.css";
 
 export default function MainApp() {
     return (
@@ -9,6 +11,7 @@ export default function MainApp() {
                     <Typography variant="h6">Carshop</Typography>
                 </Toolbar>
             </AppBar>
+            <CarList />
         </div>
     );
 }
