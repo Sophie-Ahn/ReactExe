@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /*Rest Repository 설정에 의해
-* 이 CarRepository는 json Controller의 역할을 한다.
+₩* 이 CarRepository는 json Controller의 역할을 한다.
 * 1. 전체 조회 GET - http://localhost:12000/api/cars
 * 2. ID 3인 CAR 조회 GET - http://localhost:12000/api/cars/3
 * 3. ID 3인 CAR의 OWNER 조회 GET - http://localhost:12000/api/cars/3/owner
