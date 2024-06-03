@@ -9,30 +9,34 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/*Rest Repository 설정에 의해
-₩* 이 CarRepository는 json Controller의 역할을 한다.
-* 1. 전체 조회 GET - http://localhost:12000/api/cars
-* 2. ID 3인 CAR 조회 GET - http://localhost:12000/api/cars/3
-* 3. ID 3인 CAR의 OWNER 조회 GET - http://localhost:12000/api/cars/3/owner
-* 4, 생성 POST - http://localhost:12000/api/cars
-*       Body > raw > JSON
-*       전송
-* {
+/* Rest Repository 설정에 의해
+이 CarRepository는 json Controller의 역할을 한다.
+1. 전체 조회
+  GET - http://localhost:12000/api/cars
+2. ID 3인 CAR 조회
+  GET - http://localhost:12000/api/cars/3
+3. ID 3인 CAR의 OWNER 조회
+  GET - http://localhost:12000/api/cars/3/owner
+4. 생성
+  POST -  http://localhost:12000/api/cars
+    Body > raw > JSON
+    전송
+{
     "brand": "Samsung",
-    "model": "SSS",
-    "color": "black",
-    "registerNumber": "SSS-111",
-    "year": "2024",
-    "price": "3000"
+    "model" : "SM-5",
+    "color" : "black",
+    "registerNumber" : "SSS-111",
+    "year" : 2024,
+    "price" : 3200
 }
-* 응답
-* {
+응답
+{
     "brand": "Samsung",
-    "model": "SSS",
+    "model": "SM-5",
     "color": "black",
     "registerNumber": "SSS-111",
     "year": 2024,
-    "price": 3000,
+    "price": 3200,
     "_links": {
         "self": {
             "href": "http://localhost:12000/api/cars/11"
@@ -45,20 +49,21 @@ import java.util.List;
         }
     }
 }
-* 5. 업데이트 PATCH - http://localhost:12000/api/cars/11
-*       Body > raw >JSON
-*       전송
-* {
-    "color": "gold"
+5. 업데이트
+  PATCH - http://localhost:12000/api/cars/11
+    Body > raw > JSON
+    전송
+{
+    "color" : "gold",
 }
-* 응답
-* {
+    응답
+{
     "brand": "Samsung",
-    "model": "SSS",
+    "model": "SM-5",
     "color": "gold",
     "registerNumber": "SSS-111",
     "year": 2024,
-    "price": 3000,
+    "price": 3200,
     "_links": {
         "self": {
             "href": "http://localhost:12000/api/cars/11"
@@ -71,8 +76,41 @@ import java.util.List;
         }
     }
 }
-*
-* 6. ID 11인 CAR의 OWNER를 추가 PUT - http://localhost:12000/api/cars/11
+6. ID 11인 CAR의 OWNER를 추가
+   PUT - http://localhost:12000/api/cars/11/owner
+
+Content-Type : text/uri-list
+
+Body > raw > Text
+전송
+http://localhost:12000/api/owners/1
+응답
+
+7. 추가적인 요청
+GET - http://localhost:12000/api/cars/search
+
+응답
+{
+    "_links": {
+        "findByBrand": {
+            "href": "http://localhost:12000/api/cars/search/findByBrand{?brand}",
+            "templated": true
+        },
+        "findByColor": {
+            "href": "http://localhost:12000/api/cars/search/findByColor{?color}",
+            "templated": true
+        },
+        "self": {
+            "href": "http://localhost:12000/api/cars/search"
+        }
+    }
+}
+
+8. color로 조회
+GET - http://localhost:12000/api/cars/search/findByColor?color=white
+
+9. ID가 3인 자동차 삭제
+DELETE - http://localhost:12000/api/cars/3
 * */
 
 
