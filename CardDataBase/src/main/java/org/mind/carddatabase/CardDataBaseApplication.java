@@ -79,12 +79,12 @@ public class CardDataBaseApplication implements CommandLineRunner {
 		// username=user / password=user
 		User user1 = User.builder()
 						.username("user")
-						.password("$2y$10$INDbtRssUkooG/rbdcQnL.YRQtkWH7Li.eHdnnNaq4SyxDFAPmQH.")
+						.password("$2y$10$wlw84Kru3sDTE55qlN5t6O4w7pV9Q1h0OFmvHnkazBhJ7u5WufJfC")
 						.role("USER")
 						.build();
 		User user2 = User.builder()
 				.username("admin")
-				.password("$2y$10$JheftvU0rj21srE.HtOWxOp2.WAR4Ai2oKg28vO0HrhNuFkfi2XXG")
+				.password("$2y$10$6QZkIu0xNXm7U5648ASGVeg/qADBWnDnl94lhRlyjB.baHwjrR8ze")
 				.role("ADMIN")
 				.build();
 

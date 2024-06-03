@@ -25,11 +25,12 @@ public class JwtService {
                 .signWith(key)
                 .compact();
 
-        return null;
+        return token;
     }
 
     // 클라이언트가 보내온 요청 헤더에서, 토큰을 확인하고 사용자 이름으로 전환함
     public String getAuthUser(HttpServletRequest request){
+
         String token = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         // 토큰이 헤더에 존재한다면
@@ -41,10 +42,10 @@ public class JwtService {
                     .getBody()
                     .getSubject();
 
-            // token을 비밀키로 풀었을 때 user가 잘 추출 되면
-            if(user != null){
+            // token을 비밀키로 풀었을 때 user가 잘 추출되면
+            if(user != null)
                 return user;
-            }
+
         }
 
         return null;
