@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { SERVER_URL } from "./constants";
 import { DataGrid } from "@mui/x-data-grid";
-import { Snackbar, Button } from "@mui/material";
+import { Snackbar, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import AddCar from "./AddCar";
 import EditCar from "./EditCar";
@@ -64,6 +65,7 @@ export default function CarList() {
             body: JSON.stringify(car),
         })
             .then((response) => {
+                console.log(link);
                 if (response.ok) {
                     // 추가 성공이면, 서버로부터 목록 재 요청
                     fetchCars();
@@ -88,9 +90,7 @@ export default function CarList() {
             sortable: false,
             filterable: false,
             renderCell: (row) => (
-                <EditCar data={row} updateCar={updateCar}>
-                    수정
-                </EditCar>
+                <EditCar data={row} updateCar={updateCar}></EditCar>
             ),
         },
         {
@@ -99,13 +99,9 @@ export default function CarList() {
             sortable: false,
             filterable: false,
             renderCell: (row) => (
-                <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={() => onDelClick(row.id)}
-                >
-                    삭제
-                </Button>
+                <IconButton onClick={() => onDelClick(row.id)}>
+                    <DeleteIcon color="error" />
+                </IconButton>
             ),
         },
     ];

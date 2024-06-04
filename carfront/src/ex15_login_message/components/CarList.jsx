@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { SERVER_URL } from "./constants";
 import { DataGrid } from "@mui/x-data-grid";
-import { Snackbar, Button } from "@mui/material";
+import { Snackbar, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import AddCar from "./AddCar";
 import EditCar from "./EditCar";
@@ -19,7 +20,12 @@ export default function CarList() {
 
     // 서버에 car목록 요청 함수
     const fetchCars = () => {
-        fetch(SERVER_URL + "api/cars")
+        // 세션 스토리지로부터 token을 가져온다.
+        const token = sessionStorage.getItem("jwt");
+
+        fetch(SERVER_URL + "api/cars", {
+            headers: { Authorization: token },
+        })
             .then((response) => response.json())
             .then((data) => setCars(data._embedded.cars))
             .catch((err) => console.log(err));
@@ -28,7 +34,8 @@ export default function CarList() {
     // 삭제 후 목록 다시 호출
     const onDelClick = (url) => {
         if (window.confirm("정말 삭제 할거...?")) {
-            fetch(url, { method: "DELETE" })
+            const token = sessionStorage.getItem("jwt");
+            fetch(url, { method: "DELETE", headers: { Authorization: token } })
                 .then((response) => {
                     fetchCars();
                     setOpen(true);
@@ -38,9 +45,14 @@ export default function CarList() {
     };
 
     const addCar = (car) => {
+        const token = sessionStorage.getItem("jwt");
+
         fetch(SERVER_URL + "api/cars", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+            },
             body: JSON.stringify(car),
         })
             .then((response) => {
@@ -58,12 +70,18 @@ export default function CarList() {
     // 전체 항목 갱신 시 => PUT
     // car객체 서버로 갱신 요청 함수
     const updateCar = (car, link) => {
+        const token = sessionStorage.getItem("jwt");
+
         fetch(link, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+            },
             body: JSON.stringify(car),
         })
             .then((response) => {
+                console.log(link);
                 if (response.ok) {
                     // 추가 성공이면, 서버로부터 목록 재 요청
                     fetchCars();
@@ -88,9 +106,7 @@ export default function CarList() {
             sortable: false,
             filterable: false,
             renderCell: (row) => (
-                <EditCar data={row} updateCar={updateCar}>
-                    수정
-                </EditCar>
+                <EditCar data={row} updateCar={updateCar}></EditCar>
             ),
         },
         {
@@ -99,13 +115,9 @@ export default function CarList() {
             sortable: false,
             filterable: false,
             renderCell: (row) => (
-                <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={() => onDelClick(row.id)}
-                >
-                    삭제
-                </Button>
+                <IconButton onClick={() => onDelClick(row.id)}>
+                    <DeleteIcon color="error" />
+                </IconButton>
             ),
         },
     ];
